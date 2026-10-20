@@ -1,0 +1,27 @@
+{
+    "name": "UIMotionToolkit.Editor",
+    "rootNamespace": "UIMotionToolkit.Editor",
+    "references": [
+        "UIMotionToolkit.Runtime",
+        "Unity.Timeline",
+        "Unity.Timeline.Editor",
+        "UITTimeline"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.6",
+            "define": "UIMOTION_PANEL_RENDERER"
+        }
+    ],
+    "noEngineReferences": false
+}

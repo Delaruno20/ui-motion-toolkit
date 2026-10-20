@@ -1,0 +1,23 @@
+{
+    "name": "UIMotionToolkit.Runtime",
+    "rootNamespace": "UIMotionToolkit",
+    "references": [
+        "Unity.Timeline",
+        "UITTimeline"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.6",
+            "define": "UIMOTION_PANEL_RENDERER"
+        }
+    ],
+    "noEngineReferences": false
+}

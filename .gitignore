@@ -1,0 +1,14 @@
+# Unity / OS noise
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+.vs/
+.idea/
+*.csproj
+*.sln
+.DS_Store
+Thumbs.db
+*.log
+# local-only material that must never be published (third-party art with a no-redistribution license)
+LocalOnly/

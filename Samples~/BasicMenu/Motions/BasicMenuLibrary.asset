@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e0a7ed84d1241889baa9a249f3d4ea, type: 3}
+  m_Name: BasicMenuLibrary
+  m_EditorClassIdentifier: UIMotionToolkit.Runtime::UIMotionToolkit.UIMotionLibrary
+  motions:
+  - {fileID: 11400000, guid: 938e43b3e419e2d6aa3d64d2a181a90b, type: 2}
+  - {fileID: 11400000, guid: 52968b2f630a30e5a907afa818328888, type: 2}
+  - {fileID: 11400000, guid: 494190a0631aca0639280c214e6d63d4, type: 2}
+  - {fileID: 11400000, guid: e8c0c63a52914033ba7cbc5fa7e12f95, type: 2}
+  - {fileID: 11400000, guid: 424f76226c99833acb630181a922bd5a, type: 2}
+  - {fileID: 11400000, guid: 4c5f61ca5a570dad5aa3c9e120faf623, type: 2}
+  - {fileID: 11400000, guid: a0518118869fc875790cdfd78a22077e, type: 2}
+  - {fileID: 11400000, guid: 8717e263e544eb421ab9e9a41942c1b1, type: 2}

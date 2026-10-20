@@ -1,0 +1,8 @@
+* text=auto
+*.png binary
+*.gif binary
+*.ttf binary
+*.meta text eol=lf
+*.cs text eol=lf
+*.asset merge=binary
+*.unity merge=binary

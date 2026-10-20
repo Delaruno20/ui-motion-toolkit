@@ -1,0 +1,21 @@
+{
+    "name": "UIMotionToolkit.Samples.Basic.Editor",
+    "rootNamespace": "UIMotionToolkit.Samples.Basic.Editor",
+    "references": [
+        "UIMotionToolkit.Runtime",
+        "UIMotionToolkit.Editor",
+        "Unity.Timeline",
+        "UITTimeline"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

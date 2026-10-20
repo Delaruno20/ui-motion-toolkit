@@ -1,0 +1,124 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="AdvancedShowcase.uss" />
+    <ui:VisualElement name="screen" class="screen">
+
+        <!-- ============ Stage: everything the "Showcase.Intro" motion choreographs ============ -->
+        <ui:VisualElement name="stage" class="stage">
+            <ui:VisualElement name="curtain" class="curtain" picking-mode="Ignore" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 9%; top: 62%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 21%; top: 78%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 33%; top: 55%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 47%; top: 84%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 58%; top: 66%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 69%; top: 80%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 78%; top: 58%;" />
+            <ui:VisualElement class="ember" picking-mode="Ignore" style="left: 91%; top: 74%;" />
+
+            <!-- Title block + menu -->
+            <ui:VisualElement name="title-block" class="title-block">
+                <ui:Label name="logo" class="logo" text="ASHEN CROWN" />
+                <ui:VisualElement name="logo-rule" class="logo-rule" />
+                <ui:Label name="tagline" class="tagline" text="A kingdom burns. One heir remains." />
+                <ui:VisualElement name="menu-list" class="menu-list">
+                    <ui:Button class="menu-item" text="Continue"><ui:VisualElement class="menu-item__marker" /></ui:Button>
+                    <ui:Button class="menu-item" text="New Journey"><ui:VisualElement class="menu-item__marker" /></ui:Button>
+                    <ui:Button class="menu-item" text="Bestiary"><ui:VisualElement class="menu-item__marker" /></ui:Button>
+                    <ui:Button class="menu-item" text="Settings"><ui:VisualElement class="menu-item__marker" /></ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Player card (top-left) -->
+            <ui:VisualElement name="player-card" class="card player-card">
+                <ui:VisualElement class="portrait" />
+                <ui:VisualElement class="player-card__body">
+                    <ui:Label class="card__name" text="ILDRA, LAST OF THE ASH" />
+                    <ui:VisualElement name="bar-health" class="bar bar--health">
+                        <ui:VisualElement class="bar__trail" />
+                        <ui:VisualElement class="bar__fill" />
+                        <ui:Label class="bar__label" text="HEALTH" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="bar-stamina" class="bar bar--stamina">
+                        <ui:VisualElement class="bar__trail" />
+                        <ui:VisualElement class="bar__fill" />
+                        <ui:Label class="bar__label" text="STAMINA" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Location (top-right) -->
+            <ui:VisualElement name="location-card" class="location-card">
+                <ui:Label class="location-card__chapter" text="CHAPTER II" />
+                <ui:Label class="location-card__name" text="THE HOLLOW MARCH" />
+            </ui:VisualElement>
+
+            <!-- Boss bar (top-center) -->
+            <ui:VisualElement name="boss-card" class="boss-card">
+                <ui:Label class="boss-card__name" text="THE PALE REGENT" />
+                <ui:VisualElement name="bar-boss" class="bar bar--boss">
+                    <ui:VisualElement class="bar__trail" />
+                    <ui:VisualElement class="bar__fill" />
+                </ui:VisualElement>
+                <ui:VisualElement class="boss-card__rule" />
+            </ui:VisualElement>
+
+            <!-- Journal with tabs (right) -->
+            <ui:VisualElement name="journal" class="card journal">
+                <ui:VisualElement class="journal__tabs">
+                    <ui:Button name="tab-0" class="tab tab--selected" text="Quests"><ui:VisualElement class="tab__bar" /></ui:Button>
+                    <ui:Button name="tab-1" class="tab" text="Relics"><ui:VisualElement class="tab__bar" /></ui:Button>
+                    <ui:Button name="tab-2" class="tab" text="Map"><ui:VisualElement class="tab__bar" /></ui:Button>
+                </ui:VisualElement>
+                <ui:VisualElement class="journal__pages">
+                    <ui:VisualElement name="page-0" class="page">
+                        <ui:Label class="entry entry--title" text="Active quests" />
+                        <ui:Label class="entry" text="Light the three beacons" />
+                        <ui:Label class="entry" text="Find the Smith's daughter" />
+                        <ui:Label class="entry" text="Return the Ashen Crown" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="page-1" class="page is-hidden">
+                        <ui:Label class="entry entry--title" text="Relics" />
+                        <ui:Label class="entry" text="Cinder Locket" />
+                        <ui:Label class="entry" text="Warden's Horn" />
+                        <ui:Label class="entry" text="Bone Compass" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="page-2" class="page is-hidden">
+                        <ui:Label class="entry entry--title" text="Known places" />
+                        <ui:Label class="entry" text="The Hollow March" />
+                        <ui:Label class="entry" text="Saltwick Ruins" />
+                        <ui:Label class="entry" text="The Weeping Gate" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+
+            <!-- Control bar -->
+            <ui:VisualElement name="control-bar" class="control-bar">
+                <ui:Button name="chip-intro" class="chip" text="Replay intro" />
+                <ui:Button name="chip-hit" class="chip" text="Hit boss" />
+                <ui:Button name="chip-hurt" class="chip" text="Hurt player" />
+                <ui:Button name="chip-heal" class="chip" text="Heal" />
+                <ui:Button name="chip-enrage" class="chip" text="Enrage boss" />
+                <ui:Button name="chip-toast" class="chip" text="Toast" />
+                <ui:Button name="chip-popup" class="chip" text="Popup" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="toasts" class="toasts" picking-mode="Ignore" />
+        </ui:VisualElement>
+
+        <ui:VisualElement name="flash" class="flash" picking-mode="Ignore" />
+
+        <!-- Popup -->
+        <ui:VisualElement name="popup" class="popup is-hidden">
+            <ui:VisualElement class="popup__backdrop" />
+            <ui:VisualElement class="popup__window">
+                <ui:Label class="popup__title" text="ABANDON THE QUEST?" />
+                <ui:Label class="popup__line" text="The beacons will go dark again." />
+                <ui:Label class="popup__line" text="Allies who followed you will leave." />
+                <ui:VisualElement class="popup__buttons">
+                    <ui:Button name="popup-no" class="chip chip--big" text="Stay" />
+                    <ui:Button name="popup-yes" class="chip chip--big" text="Abandon" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

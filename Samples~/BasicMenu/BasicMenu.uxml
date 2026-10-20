@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="BasicMenu.uss" />
+    <ui:VisualElement name="screen" class="screen">
+
+        <!-- The motion scope for "Basic.Menu.Show" / "Basic.Menu.Hide" is this element. -->
+        <ui:VisualElement name="menu" class="menu">
+            <ui:Label name="menu-title" class="menu__title" text="UI MOTION TOOLKIT" />
+            <ui:VisualElement class="menu__rule" />
+            <ui:Button name="new-game" class="menu-button" text="New Game" />
+            <ui:Button name="options" class="menu-button" text="Options" />
+            <ui:Button name="continue" class="menu-button menu-button--locked" text="Continue" />
+            <ui:Button name="quit" class="menu-button" text="Quit" />
+        </ui:VisualElement>
+
+        <ui:Label name="hint" class="hint" text="Hover or focus a button. Press it. Try Options and the locked button." />
+
+        <!-- Hidden popup: UIMotion.Show removes "is-hidden" then plays Basic.Popup.Show. -->
+        <ui:VisualElement name="popup" class="popup is-hidden">
+            <ui:VisualElement class="popup__backdrop" />
+            <ui:VisualElement class="popup__window">
+                <ui:Label class="popup__title" text="OPTIONS" />
+                <ui:Label class="popup__row" text="Music volume" />
+                <ui:Label class="popup__row" text="Effects volume" />
+                <ui:Label class="popup__row" text="Fullscreen" />
+                <ui:Button name="popup-close" class="menu-button" text="Close" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

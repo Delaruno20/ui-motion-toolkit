@@ -1,0 +1,308 @@
+/* UI Motion Toolkit - Dark Fantasy Showcase.
+   Pure USS art, no textures. Convention used everywhere: the USS holds the REST state of every element;
+   motions animate TO or FROM it, and the inline styles they write are cleared when they finish. */
+
+:root {
+    --bg: rgb(10, 8, 12);
+    --panel: rgba(20, 16, 22, 0.94);
+    --ink: rgb(230, 220, 203);
+    --muted: rgb(141, 129, 120);
+    --gold: rgb(201, 160, 74);
+    --line: rgb(58, 44, 48);
+    --crimson: rgb(158, 42, 53);
+    --crimson-dark: rgb(74, 22, 30);
+    --crimson-bright: rgb(224, 85, 94);
+}
+
+.screen {
+    flex-grow: 1;
+    background-color: var(--bg);
+    color: var(--ink);
+    -unity-font-definition: url("Fonts/MedievalSharp-Regular.ttf");
+}
+
+.stage { flex-grow: 1; }
+.is-hidden { display: none; }
+
+.curtain {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.flash {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(158, 42, 53, 0);
+}
+
+.ember {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 3px;
+    background-color: rgba(224, 85, 94, 0.85);
+}
+
+/* ---------------------------------------------------------------- Title + menu */
+.title-block {
+    position: absolute;
+    left: 150px; top: 250px;
+    width: 700px;
+}
+
+.logo {
+    font-size: 96px;
+    letter-spacing: 6px;
+    color: var(--ink);
+    -unity-font-definition: url("Fonts/ManufacturingConsent-Regular.ttf");
+}
+
+/* Transient class added by a Class clip during the intro (the glow). */
+.logo.is-glowing { text-shadow: 0 0 18px rgba(224, 85, 94, 0.9); color: rgb(255, 238, 220); }
+
+.logo-rule {
+    width: 420px; height: 3px;
+    margin: 6px 0 12px 6px;
+    background-color: var(--crimson);
+    transform-origin: left center;
+}
+
+.tagline {
+    font-size: 24px;
+    color: var(--muted);
+    margin-left: 6px;
+}
+
+.menu-list { margin-top: 54px; }
+
+.menu-item {
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    margin: 2px 0;
+    padding: 0 0 0 34px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    font-size: 30px;
+    color: var(--muted);
+    -unity-text-align: middle-left;
+}
+
+/* Rest state of a focused item = END state of "Showcase.MenuItem.Focus". */
+.menu-item:focus {
+    translate: 18px 0;
+    color: var(--gold);
+}
+
+.menu-item__marker {
+    position: absolute;
+    left: 6px; top: 22px;
+    width: 12px; height: 12px;
+    background-color: var(--crimson-bright);
+    rotate: 45deg;
+    scale: 0 0;
+}
+.menu-item:focus .menu-item__marker { scale: 1 1; }
+
+/* ---------------------------------------------------------------- Cards */
+.card {
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--line);
+    border-radius: 3px;
+}
+
+.player-card {
+    position: absolute;
+    left: 40px; top: 36px;
+    flex-direction: row;
+    padding: 14px 18px 14px 14px;
+}
+
+.portrait {
+    width: 86px; height: 86px;
+    margin-right: 16px;
+    background-color: rgb(34, 27, 36);
+    border-width: 2px;
+    border-color: var(--gold);
+}
+
+.player-card__body { width: 360px; }
+
+.card__name {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    color: var(--ink);
+}
+
+/* ---------------------------------------------------------------- Bars */
+.bar {
+    position: relative;
+    height: 22px;
+    margin-bottom: 8px;
+    background-color: rgb(14, 11, 15);
+    border-width: 2px;
+    border-color: var(--line);
+}
+
+.bar__trail, .bar__fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 100%;
+    transform-origin: left center;
+}
+
+.bar__trail { background-color: rgb(236, 214, 170); }
+.bar__fill { background-color: var(--crimson); }
+.bar--stamina .bar__fill { background-color: rgb(70, 124, 96); }
+.bar--boss .bar__fill { background-color: rgb(150, 120, 60); }
+
+.bar__label {
+    position: absolute;
+    left: 8px; top: -1px;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* ---------------------------------------------------------------- Location / boss */
+.location-card {
+    position: absolute;
+    right: 40px; top: 36px;
+    align-items: flex-end;
+}
+.location-card__chapter { font-size: 18px; letter-spacing: 5px; color: var(--gold); }
+.location-card__name { font-size: 34px; letter-spacing: 3px; color: var(--ink); }
+
+.boss-card {
+    position: absolute;
+    left: 560px; top: 40px;
+    width: 800px;
+    padding: 10px 16px 12px 16px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 2px;
+    border-color: rgba(0, 0, 0, 0);
+}
+.boss-card__name { font-size: 28px; letter-spacing: 6px; color: var(--ink); margin-bottom: 8px; }
+.boss-card .bar { width: 100%; height: 18px; margin-bottom: 8px; }
+.boss-card__rule { width: 360px; height: 2px; background-color: var(--line); }
+
+/* Rest state while enraged = END state of "Showcase.Boss.Enrage". */
+.boss-card.is-enraged { border-color: var(--crimson-bright); }
+.boss-card.is-enraged .boss-card__name { color: var(--crimson-bright); }
+.boss-card.is-enraged .bar--boss .bar__fill { background-color: var(--crimson-bright); }
+
+/* ---------------------------------------------------------------- Journal */
+.journal {
+    position: absolute;
+    right: 40px; top: 190px;
+    width: 460px; height: 520px;
+}
+
+.journal__tabs { flex-direction: row; border-bottom-width: 2px; border-color: var(--line); }
+
+.tab {
+    flex-grow: 1;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    font-size: 24px;
+    color: var(--muted);
+}
+.tab--selected { color: var(--gold); }
+
+.tab__bar {
+    position: absolute;
+    left: 14px; right: 14px; bottom: -2px;
+    height: 3px;
+    background-color: var(--gold);
+    scale: 0 1;
+}
+.tab--selected .tab__bar { scale: 1 1; }
+
+.journal__pages { flex-grow: 1; margin: 22px 26px; }
+.page { position: absolute; left: 0; top: 0; right: 0; }
+
+.entry {
+    font-size: 24px;
+    padding: 14px 0;
+    border-bottom-width: 1px;
+    border-color: var(--line);
+    color: var(--ink);
+}
+.entry--title { color: var(--gold); letter-spacing: 3px; font-size: 22px; }
+
+/* ---------------------------------------------------------------- Chips / controls */
+.control-bar {
+    position: absolute;
+    left: 150px; bottom: 34px;
+    flex-direction: row;
+}
+
+.chip {
+    height: 46px;
+    margin: 0 10px 0 0;
+    padding: 0 22px;
+    font-size: 21px;
+    color: var(--ink);
+    background-color: rgb(28, 22, 32);
+    border-width: 1px;
+    border-color: var(--line);
+    border-radius: 2px;
+}
+.chip:focus {
+    background-color: var(--crimson-dark);
+    border-color: var(--crimson-bright);
+}
+.chip--big { height: 54px; padding: 0 34px; font-size: 24px; }
+
+/* ---------------------------------------------------------------- Toasts */
+.toasts {
+    position: absolute;
+    right: 40px; bottom: 34px;
+    width: 400px;
+    flex-direction: column-reverse;
+}
+
+.toast {
+    margin-top: 10px;
+    padding: 14px 18px 18px 18px;
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--gold);
+    border-radius: 3px;
+}
+.toast__title { font-size: 21px; letter-spacing: 3px; color: var(--gold); }
+.toast__text { font-size: 20px; color: var(--ink); margin-top: 2px; }
+.toast__life {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 4px;
+    background-color: var(--gold);
+    transform-origin: left center;
+}
+
+/* ---------------------------------------------------------------- Popup */
+.popup {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+.popup__backdrop { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.68); }
+.popup__window {
+    width: 620px;
+    padding: 34px 40px 36px 40px;
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--crimson-bright);
+    border-radius: 3px;
+}
+.popup__title { font-size: 32px; letter-spacing: 4px; color: var(--ink); -unity-text-align: middle-center; margin-bottom: 14px; }
+.popup__line { font-size: 22px; color: var(--muted); -unity-text-align: middle-center; margin: 4px 0; }
+.popup__buttons { flex-direction: row; justify-content: center; margin-top: 28px; }

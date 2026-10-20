@@ -1,0 +1,39 @@
+{
+  "name": "com.delaruno20.ui-motion-toolkit",
+  "version": "1.0.0",
+  "displayName": "UI Motion Toolkit",
+  "description": "Timeline-authored animation for UI Toolkit. Author motions in the Timeline window (or from code), then play, reverse, toggle, show and hide them on any VisualElement by id - no PlayableDirector, no per-element components, unscaled time.",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/Delaruno20/ui-motion-toolkit#readme",
+  "changelogUrl": "https://github.com/Delaruno20/ui-motion-toolkit/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/Delaruno20/ui-motion-toolkit/blob/main/LICENSE.md",
+  "keywords": [
+    "UI Toolkit",
+    "UIElements",
+    "Timeline",
+    "Animation",
+    "UI",
+    "Tween",
+    "Motion"
+  ],
+  "dependencies": {
+    "com.unity.timeline": "1.8.0",
+    "com.unity.modules.uielements": "1.0.0"
+  },
+  "samples": [
+    {
+      "displayName": "Basic Menu",
+      "description": "A small menu: staggered entrance, hover/focus toggle, press pulse, show/hide panel. Pure USS art, no textures.",
+      "path": "Samples~/BasicMenu"
+    },
+    {
+      "displayName": "Dark Fantasy Showcase",
+      "description": "A full game-style screen: choreographed intro, boss bar hit reaction, tabs, popup, toasts, shake, loops and code-authored motions.",
+      "path": "Samples~/AdvancedShowcase"
+    }
+  ],
+  "author": {
+    "name": "Delaruno20",
+    "url": "https://github.com/Delaruno20"
+  }
+}

@@ -1,0 +1,112 @@
+/* UI Motion Toolkit - Basic Menu sample.
+   Pure USS art: no textures. The USS describes the REST states; the motions (Motions/) animate between them. */
+
+:root {
+    --bg: rgb(12, 10, 14);
+    --panel: rgb(22, 18, 24);
+    --line: rgb(70, 48, 54);
+    --accent: rgb(168, 40, 52);
+    --accent-bright: rgb(214, 78, 84);
+    --text: rgb(222, 212, 198);
+    --muted: rgb(138, 126, 120);
+}
+
+.screen {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+    -unity-font-definition: url("Fonts/MedievalSharp-Regular.ttf");
+    color: var(--text);
+}
+
+.is-hidden { display: none; }
+
+/* ---- Menu ---- */
+.menu {
+    width: 460px;
+    padding: 40px 48px 44px 48px;
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--line);
+    border-radius: 4px;
+}
+
+.menu__title {
+    font-size: 30px;
+    letter-spacing: 4px;
+    -unity-text-align: middle-center;
+    color: var(--text);
+}
+
+.menu__rule {
+    height: 2px;
+    margin: 18px 40px 26px 40px;
+    background-color: var(--accent);
+}
+
+.menu-button {
+    height: 54px;
+    margin: 6px 0;
+    padding: 0;
+    font-size: 21px;
+    color: var(--text);
+    background-color: rgb(30, 25, 32);
+    border-width: 1px;
+    border-color: var(--line);
+    border-radius: 2px;
+    -unity-text-align: middle-center;
+}
+
+/* Rest state of the focused button = END state of "Basic.Button.Focus". */
+.menu-button:focus {
+    translate: 10px 0;
+    background-color: rgb(74, 24, 32);
+    border-color: var(--accent-bright);
+}
+
+.menu-button--locked { color: var(--muted); }
+
+.hint {
+    position: absolute;
+    bottom: 36px;
+    font-size: 18px;
+    color: var(--muted);
+}
+
+/* ---- Popup ---- */
+.popup {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup__backdrop {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.62);
+}
+
+.popup__window {
+    width: 420px;
+    padding: 30px 36px 34px 36px;
+    background-color: var(--panel);
+    border-width: 2px;
+    border-color: var(--accent);
+    border-radius: 4px;
+}
+
+.popup__title {
+    font-size: 26px;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    -unity-text-align: middle-center;
+}
+
+.popup__row {
+    font-size: 19px;
+    padding: 10px 0;
+    border-bottom-width: 1px;
+    border-color: var(--line);
+}

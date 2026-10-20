@@ -1,0 +1,27 @@
+{
+    "name": "UIMotionToolkit.Tests.Editor",
+    "rootNamespace": "UIMotionToolkit.Tests",
+    "references": [
+        "UIMotionToolkit.Runtime",
+        "UIMotionToolkit.Editor",
+        "Unity.Timeline",
+        "UITTimeline",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
