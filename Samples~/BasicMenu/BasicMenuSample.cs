@@ -7,8 +7,9 @@ namespace UIMotionToolkit.Samples.Basic
     /// <summary>
     /// Everything the Basic Menu sample does with UI Motion Toolkit, in one short file.
     /// The motions themselves (timelines in Motions/) contain no code; this script only says WHEN to play them.
+    /// Works with a <see cref="UIDocument"/> or, on Unity 6000.6+, a <see cref="PanelRenderer"/> on the same
+    /// GameObject: UIMotion only needs a VisualElement, wherever it comes from.
     /// </summary>
-    [RequireComponent(typeof(UIDocument))]
     public sealed class BasicMenuSample : MonoBehaviour
     {
         // Motion ids = timeline asset names. They are resolved through the library below.
@@ -28,13 +29,35 @@ namespace UIMotionToolkit.Samples.Basic
         private VisualElement _popup;
         private Label _hint;
 
+#if UNITY_6000_6_OR_NEWER
+        private PanelRenderer _panelRenderer;
+
+        // PanelRenderer builds (and may rebuild) its tree itself: bind every time it hands us a root.
+        private void OnEnable()
+        {
+            _panelRenderer = GetComponent<PanelRenderer>();
+            _panelRenderer?.RegisterUIReloadCallback(OnUIReload);
+        }
+
+        private void OnDisable() => _panelRenderer?.UnregisterUIReloadCallback(OnUIReload);
+
+        private void OnUIReload(PanelRenderer panelRenderer, VisualElement root, int version) => Bind(root);
+#endif
+
         private void Start()
+        {
+            // UIDocument path (a PanelRenderer binds from its reload callback instead).
+            var document = GetComponent<UIDocument>();
+            if (document != null)
+                Bind(document.rootVisualElement);
+        }
+
+        private void Bind(VisualElement root)
         {
             // 1. Tell the toolkit where to find motions by id. (Alternative: put the library in
             //    Resources/UI/UIMotionLibrary and skip this line.)
             UIMotion.Library = library;
 
-            VisualElement root = GetComponent<UIDocument>().rootVisualElement;
             _menu = root.Q("menu");
             _popup = root.Q("popup");
             _hint = root.Q<Label>("hint");

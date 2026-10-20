@@ -49,7 +49,7 @@ namespace UIMotionToolkit
             if (_panelRenderer == null)
             {
                 _panelRenderer = GetComponentInParent<PanelRenderer>();
-                _panelRenderer?.RegisterUIReloadCallback((_, documentRoot) => _panelRendererRoot = documentRoot);
+                _panelRenderer?.RegisterUIReloadCallback((_, documentRoot, _) => _panelRendererRoot = documentRoot);
             }
             return _panelRendererRoot;
 #else

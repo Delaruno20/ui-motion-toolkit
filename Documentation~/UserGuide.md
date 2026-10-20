@@ -49,7 +49,7 @@ While a motion runs it writes **inline styles** (translate, scale, rotate, opaci
 | --- | --- |
 | Unity | 6000.0 or newer declared; developed and tested on **6000.6.0f1** only |
 | Packages | `com.unity.timeline` (automatic) and `dev.krajnc.uitoolkittimeline` (manual, see below) |
-| UI | UI Toolkit runtime (`UIDocument`, or any `VisualElement` tree attached to a panel) |
+| UI | UI Toolkit runtime: `UIDocument`, `PanelRenderer` (6000.6+), or any `VisualElement` tree attached to a panel |
 
 ### 2.2 Install
 
@@ -71,6 +71,45 @@ To work on a local copy instead, use a `file:` dependency: `"com.delaruno20.ui-m
 - Why a library: it keeps the motion assets in builds without scene wiring, and game code stays free of asset references.
 
 > A missing id is not an exception. The state changes **instantly** and a warning is logged once per id.
+
+### 2.4 UIDocument and PanelRenderer
+
+UI Motion Toolkit never talks to `UIDocument` or `PanelRenderer`: every call takes a **`VisualElement`**. Only the way you obtain that element differs.
+
+**UIDocument**: read `rootVisualElement` in `Start()` (not `Awake`/`OnEnable`, the tree may not exist yet).
+
+```csharp
+void Start() => Bind(GetComponent<UIDocument>().rootVisualElement);
+```
+
+**PanelRenderer** (Unity 6000.6+): the component builds the tree itself and may **rebuild it** (asset reimport, settings change), so register for its reload callback and bind **every time** it gives you a root. Use the 3-argument version (the 2-argument one is obsolete):
+
+```csharp
+PanelRenderer _renderer;
+
+void OnEnable()
+{
+    _renderer = GetComponent<PanelRenderer>();
+    _renderer.RegisterUIReloadCallback(OnUIReload);
+}
+
+void OnDisable() => _renderer.UnregisterUIReloadCallback(OnUIReload);
+
+void OnUIReload(PanelRenderer renderer, VisualElement root, int version)
+{
+    UIMotion.Show(root.Q("menu"), "Menu.Show");
+    UIMotionTriggers.BindAll(root, ".menu-item", "Item.Focus", "Item.Press");
+}
+```
+
+Notes:
+
+- A playback bound to the old tree is dropped automatically when its scope leaves the panel; the new tree starts clean.
+- Event handlers (`clicked +=`, `RegisterCallback`) must be registered inside the reload callback, on the new elements.
+- Guard PanelRenderer code in scripts that must compile on older Unity versions with `#if UNITY_6000_6_OR_NEWER`.
+- The *Basic Menu* sample contains both scenes: `BasicMenu.unity` (UIDocument) and `BasicMenu_PanelRenderer.unity` (PanelRenderer). The same `BasicMenuSample` script serves both.
+- The Timeline-window preview (`UIMotionPreviewScope`, *Create Preview Director*) also finds a `PanelRenderer` on the object or its parents (Unity 6000.6+).
+- Support was written for Unity's PanelRenderer API but is **community-validated only**: please report issues.
 
 ---
 

@@ -54,7 +54,7 @@ UI Motion Toolkit is a small runtime player and authoring layer on top of those 
 - **Timeline window preview** with the same evaluation code as the runtime.
 - **Offscreen preview renderer** (editor): capture frames of a motion at chosen times, handy for docs and regression checks.
 - **Deterministic evaluation**: the same time always gives the same frame (scrubbing, reversing, capturing).
-- Works on `UIDocument` roots and on elements you build at runtime. Inline styles written by a motion are **cleared when it ends**, so your USS stays the single source of truth for rest states.
+- Works with **`UIDocument` and `PanelRenderer`** (Unity 6000.6+) roots and on elements you build at runtime: it only needs a `VisualElement` (see the [guide](Documentation~/UserGuide.md#24-uidocument-and-panelrenderer)). Inline styles written by a motion are **cleared when it ends**, so your USS stays the single source of truth for rest states.
 
 ## Install
 
@@ -233,7 +233,7 @@ Both samples use **pure USS art** (no textures) and the open-licensed fonts *Med
 
 ### Basic Menu (`Samples~/BasicMenu`, 8 motions)
 
-Staggered entrance, reversible hover/focus, press pulse, error shake, popup show/hide, a fake loading cycle using `Hide` + callback + `Show`.
+Two scenes (`UIDocument` and `PanelRenderer`). Staggered entrance, reversible hover/focus, press pulse, error shake, popup show/hide, a fake loading cycle using `Hide` + callback + `Show`.
 
 | Entrance | Popup | Error shake |
 | --- | --- | --- |

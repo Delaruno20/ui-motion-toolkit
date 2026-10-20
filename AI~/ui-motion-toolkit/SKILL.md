@@ -47,6 +47,24 @@ Facts:
 - Playbacks bind selectors when they start. Elements added later need a new play (or `playback.Bind()`).
 - Mouse hover does NOT focus a UI Toolkit button. For a hover look, call `element.Focus()` on `PointerEnterEvent`, or use `ToggleOnHover`.
 
+### Getting the root element: UIDocument or PanelRenderer
+
+UIMotion works on any `VisualElement`. Ask which component the user has, or detect it from their code. Do not assume `UIDocument`: PanelRenderer is the newer component (Unity 6000.6+).
+
+UIDocument (read the root in `Start()`):
+```csharp
+void Start() => Bind(GetComponent<UIDocument>().rootVisualElement);
+```
+
+PanelRenderer (it builds and may REBUILD the tree: bind in the reload callback every time; use the 3-argument callback, the 2-argument one is obsolete):
+```csharp
+PanelRenderer _renderer;
+void OnEnable()  { _renderer = GetComponent<PanelRenderer>(); _renderer.RegisterUIReloadCallback(OnUIReload); }
+void OnDisable() => _renderer.UnregisterUIReloadCallback(OnUIReload);
+void OnUIReload(PanelRenderer renderer, VisualElement root, int version) => Bind(root);
+```
+Rules for PanelRenderer: register event handlers (`clicked +=`, `RegisterCallback`) and `UIMotion.*` calls inside `Bind(root)`, on the new tree; never cache elements across reloads; wrap in `#if UNITY_6000_6_OR_NEWER` if the project may target older Unity. Everything else (motions, library, builder script, USS) is identical for both components.
+
 ## 4. Authoring API (editor-only; namespace `UIMotionToolkit.Editor`)
 
 ```csharp
@@ -105,7 +123,7 @@ For each request, output in this order and name every file path:
 
 1. **UXML** (only if the UI does not exist yet) and **USS** with the rest states and `.is-hidden { display: none; }`.
 2. **Editor builder script** `Assets/Editor/<Name>Motions.cs` (needs `using UIMotionToolkit; using UIMotionToolkit.Editor; using UnityEditor; using UnityEngine;`) with a `[MenuItem("Tools/<Project>/Build <Name> Motions")]` method that builds every motion, ends with `UIMotionLibraryBuilder.RebuildDefault();`.
-3. **Runtime script** that calls `UIMotion.*` (a MonoBehaviour next to the `UIDocument`, query elements in `Start()`, not `Awake`/`OnEnable`).
+3. **Runtime script** that calls `UIMotion.*` (a MonoBehaviour next to the `UIDocument` or `PanelRenderer`; for UIDocument query elements in `Start()`, not `Awake`/`OnEnable`; for PanelRenderer bind in the reload callback, see section 3).
 4. **Steps for the user**: install packages, add files, run the menu item once, press Play. Tell them to re-run the menu item after any change to the builder.
 
 Template for the editor script:
@@ -179,7 +197,8 @@ public class MenuController : MonoBehaviour
 5. Hover does nothing: UI Toolkit hover is not focus (section 3).
 6. Colors wrong at start: missing `neutral:` on a state motion.
 7. Compile error `UITTimeline`: dependency not installed (section 2).
-8. Motions work in play mode only after the library was rebuilt (menu item or `UIMotionLibraryBuilder.RebuildDefault()`).
+8. PanelRenderer: nothing animates after a reload, or handlers fire twice: bindings must live in the reload callback on the new root, with the 3-argument signature.
+9. Motions work in play mode only after the library was rebuilt (menu item or `UIMotionLibraryBuilder.RebuildDefault()`).
 
 ## 10. Rules for you
 
