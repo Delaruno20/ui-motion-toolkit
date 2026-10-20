@@ -258,7 +258,7 @@ A game-style screen: choreographed 3.5-second intro (26 tracks), seamless ambien
 - **Claude** (web, free or paid): paste the file into a chat, or add it to a Project; in Claude Code or Claude with Skills, drop the `ui-motion-toolkit` folder in your skills directory.
 - **ChatGPT, DeepSeek, Gemini, others**: paste the file as the first message (or into custom instructions / a custom GPT), then describe the UI you want animated.
 
-The file is about 250 lines so it fits free-tier context limits.
+The file is under 200 lines so it fits free-tier context limits.
 
 ## Pros and cons
 
