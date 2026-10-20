@@ -216,6 +216,7 @@ ui-motion-toolkit/
 │   └── Preview/UIMotionPreviewRenderer.cs offscreen frame capture
 │
 ├── Tests/Editor/                   assembly UIMotionToolkit.Tests.Editor (18 EditMode tests)
+├── AI~/ui-motion-toolkit/SKILL.md  instruction file for AI assistants
 ├── Samples~/                       imported on demand from the Package Manager
 │   ├── BasicMenu/                  small, readable: start here
 │   └── AdvancedShowcase/           a full game-style screen
@@ -249,6 +250,15 @@ A game-style screen: choreographed 3.5-second intro (26 tracks), seamless ambien
 | Popup | Page transition |
 | --- | --- |
 | ![](Documentation~/Images/adv-popup.gif) | ![](Documentation~/Images/adv-page.gif) |
+
+## Use it with an AI assistant
+
+[`AI~/ui-motion-toolkit/SKILL.md`](AI~/ui-motion-toolkit/SKILL.md) is a single self-contained instruction file that teaches an AI assistant the whole API, the authoring rules and the common pitfalls. It needs **no Unity access and no MCP**: the assistant writes the USS, an editor builder script and a runtime script, and you paste them in.
+
+- **Claude** (web, free or paid): paste the file into a chat, or add it to a Project; in Claude Code or Claude with Skills, drop the `ui-motion-toolkit` folder in your skills directory.
+- **ChatGPT, DeepSeek, Gemini, others**: paste the file as the first message (or into custom instructions / a custom GPT), then describe the UI you want animated.
+
+The file is about 250 lines so it fits free-tier context limits.
 
 ## Pros and cons
 
